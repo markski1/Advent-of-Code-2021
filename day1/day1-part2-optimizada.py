@@ -1,4 +1,5 @@
-# version un poquito mas rapida pero menos entendible
+# version (que teoricamente deberia ser) poquito mas rapida pero menos entendible.
+# el tema es que por cuestiones misteriosas de python performa igual que la otra a pesar de hacer todo en una iteración, qcyo
 
 archivo = open("input.txt", "r")
 lineas = archivo.readlines()
