@@ -1,23 +1,24 @@
-def extraerNumero(linea):
-	#los comandos tienen sintaxis onda "forward 4", asi que es nomas sacar el numero despues del espacio.
-	pos = linea.find(" ")
-	return int(linea[pos+1].split()[0])
+def extractNumber(line):
+	# commands have syntax along the lines of "forward 4", so just grab the value after the space which will be a number.
+	pos = line.find(" ")
+	return int(line[pos+1].split()[0])
 
 
 
 
-archivo = open("input.txt", "r")
-lineas = archivo.readlines()
+file = open("input.txt", "r")
+lines = file.readlines()
+file.close()
 
-profundidad, horizontal = 0, 0
+depth, horizontal = 0, 0
 
-# los comandos son "down, up, forward", con ver el primer caracter alcanza
-for linea in lineas:
-	if linea[0] == "d":
-		profundidad += extraerNumero(linea)
-	elif linea[0] == "u":
-		profundidad -= extraerNumero(linea)
+# commands are "down, up, forward", looking at the first digit is good enough
+for line in lines:
+	if line[0] == "d":
+		depth += extractNumber(line)
+	elif line[0] == "u":
+		depth -= extractNumber(line)
 	else:
-		horizontal += extraerNumero(linea)
+		horizontal += extractNumber(line)
 
-print(f"{profundidad} profundidad, {horizontal} horizontal , {profundidad*horizontal}.")
+print(f"{depth} depth, {horizontal} horizontal , {depth*horizontal}.")

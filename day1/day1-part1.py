@@ -1,15 +1,16 @@
-archivo = open("input.txt", "r")
-lineas = archivo.readlines()
+file = open("input.txt", "r")
+lines = file.readlines()
+file.close()
 
-incrementaciones = 0
-anterior = -1
+incrementations = 0
+previous = -1
 
-for linea in lineas:
-	actual = int(linea)
-	if (anterior != -1):
-		if (actual > anterior):
-			incrementaciones += 1
+for line in lines:
+	current = int(line)
+	if (previous != -1):
+		if (current > previous):
+			incrementations += 1
 
-	anterior = actual
+	previous = current
 
-print(f"Hubo {incrementaciones} incrementaciones.")
+print(f"There's been {incrementations} incrementations.")

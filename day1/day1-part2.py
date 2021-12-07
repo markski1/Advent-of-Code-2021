@@ -1,44 +1,45 @@
-archivo = open("input.txt", "r")
-lineas = archivo.readlines()
+file = open("input.txt", "r")
+lines = file.readlines()
+file.close()
 
-acumulador = [0, 0, 0]
-sumas = []
+accumulator = [0, 0, 0]
+additions = []
 
-contador = 0
+counter = 0
 
-for linea in lineas:
-	actual = int(linea)
-	acumulador[contador % 3] = actual
-	contador += 1
-	if (contador >= 3):
-		sumas.append(sum(acumulador))
+for line in lines:
+	current = int(line)
+	accumulator[counter % 3] = current
+	counter += 1
+	if (counter >= 3):
+		additions.append(sum(accumulator))
 
-anterior = -1
-incrementaciones = 0
+previous = -1
+incrementations = 0
 
-for i in sumas:
-	if (anterior != -1):
-		if (i > anterior):
-			incrementaciones += 1
+for i in additions:
+	if (previous != -1):
+		if (i > previous):
+			incrementations += 1
 
-	anterior = i
+	previous = i
 
-print(f"Hubo {incrementaciones} incrementaciones.")
+print(f"There's been {incrementations} incrementations.")
 
-# La solución es un poco distinta a la que implica el enunciado.
-# En vez de llevar varias ventanas de 3, se lleva un solo acumulador de 3 elementos
-# Y se va agregando a una lista cada vez que uno cambia, luego simplemente se comparan
-# los elementos de la misma.
+# It's worth noting that this solution is based off someone else's solution in C.
+# I couldn't figure out a (efficient) way to keep count of the addition windows.
+# As it turns out, it's not necesary if you just add the additions to a single list each
+# time you go through a line.
 
-# Ejemplo:
+# Example:
 
-# [198, 208, 209] = 615 {primer}
-# [212, 208, 209] = 629 {incremento}
-# [212, 213, 209] = 634 {incremento}
-# [212, 213, 217] = 642 {incremento}
-# [218, 213, 217] = 648 {incremento}
-# [218, 223, 217] = 658 {incremento}
-# [218, 223, 222] = 663 {incremento}
-# [224, 223, 222] = 669 {incremento}
-# [224, 216, 222] = 662 {decremento}
-# [224, 216, 233] = 673 {incremento}
+# [198, 208, 209] = 615 {first}
+# [212, 208, 209] = 629 {increment}
+# [212, 213, 209] = 634 {increment}
+# [212, 213, 217] = 642 {increment}
+# [218, 213, 217] = 648 {increment}
+# [218, 223, 217] = 658 {increment}
+# [218, 223, 222] = 663 {increment}
+# [224, 223, 222] = 669 {increment}
+# [224, 216, 222] = 662 {decrement}
+# [224, 216, 233] = 673 {increment}

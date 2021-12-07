@@ -1,25 +1,26 @@
-archivo = open("input.txt", "r")
-lineas = archivo.readlines()
+file = open("input.txt", "r")
+lines = file.readlines()
+file.close()
 
-# llevamos la cuenta de la ocurrencia de ceros y unos en cada posición.
-# son numeros binarios de 12 digitos, por lo tanto llevamos listas con 12 contadores
-ceros = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-unos = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+# carry a count of each digit in each position
+# It's 12 digit binary numbers, so we'll need 12 counters for each.
+zeros = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+ones = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-# vamos linea por linea y contando cada digito
-for linea in lineas:
+# go line for line and count every digit
+for linea in lines:
 	for i in range(12):
 		if linea[i] == '0':
-			ceros[i] += 1
+			zeros[i] += 1
 		else:
-			unos[i] += 1
+			ones[i] += 1
 
 epsilon = gamma = 0
 
-# para los 12 digitos vamos sumando a epsilon y a gamma sus respectivos valores.
-# recordar que el valor de un digito binario es dos llevado al valor de su posición (contando desde la derecha y comenzando en uno)
+# for every binary digit go adding to gamma and epsilon
+# remember the value of a binary digit is, counting from the right, 2 to the power of it's position.
 for i in range(12):
-	if ceros[i] > unos[i]:
+	if zeros[i] > ones[i]:
 		epsilon += pow(2, 12-(i+1))
 	else:
 		gamma += pow(2, 12-(i+1))
